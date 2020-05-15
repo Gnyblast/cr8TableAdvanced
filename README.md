@@ -14,6 +14,8 @@ Simple ready to use powerful angularJS plug and play table.
 		Give a name to your new Controller (Shouldn't be same if you have one already.
 #### data:
 		the variable name of your JSON data. could be direct js variable or $scope variable. if $scope variable mention it's full name like; ($scope.data)
+#### isDataFromParentAngular:
+		true if the data is being fetched by another parent angular.
 #### searchModule:
 		true or false depending if you want Search Module.
 #### advancedSearch:
