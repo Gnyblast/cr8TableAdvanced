@@ -62,6 +62,7 @@ Simple ready to use powerful angularJS plug and play table.
 	    angularAppName:  "cr8App",
 	    newAngularContollerName:  "cr8Control",
 	    data:  "myData",
+	    isDataFromParentAngular:false,
 	    searchModule:  true,
 	    advancedSearch:  true,
 	    pageLimiter:  true,
