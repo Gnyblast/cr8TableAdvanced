@@ -2,6 +2,9 @@
 # Cr8Table - Advanced Table Plugin
 Simple ready to use powerful angularJS plug and play table.
 
+Working Example without style
+https://cr8tableadvanced.stackblitz.io/
+
 ## Configurations Explained
 ##### headers:
 		the headers of the table. The number of elements and their order should be same with assocNames config.
