@@ -1,4 +1,4 @@
-class TableBuilder{
+export class Cr8TableBuilder{
 
   constructor(config){
     this.config = config;
