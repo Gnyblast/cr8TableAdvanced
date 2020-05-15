@@ -55,7 +55,7 @@ Simple ready to use powerful angularJS plug and play table.
 #### Head Tag
 
     <head>
-    	var tableConfig =  {
+	var tableConfig =  {
 	    headers:  ["ID",  "Username",  "Name",  "Phone",  "Email",  "Active",  "Accountant",  "Admin",  "Date"],
 	    assocNames:["id",  "username",  "name",  "phone",  "email",  "isactive",  "isaccountant",  "isadmin",  "date"],
 	    isAngularAppExist:  false,
