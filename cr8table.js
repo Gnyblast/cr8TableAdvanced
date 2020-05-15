@@ -223,8 +223,12 @@ export class Cr8TableBuilder{
 
   angularStart(){
     var configs = this.config;
-    angular.module(this.config.angularAppName, [])
-    .controller(this.config.newAngularContollerName, function($scope, $timeout){ 
+    if(configs.isAngularAppExist){
+      var cr8AngularApp = angular.module(this.config.angularAppName)
+    } else {
+      var cr8AngularApp = angular.module(this.config.angularAppName, [])
+    }
+    cr8AngularApp.controller(this.config.newAngularContollerName, function($scope, $rootScope, $timeout){ 
       
       $scope.activeClass = configs.classes.activePageNumberClass
       $scope.cr8AdvanceFilter = "";
@@ -232,8 +236,18 @@ export class Cr8TableBuilder{
       $scope.cr8Limit = (configs.pageLimiter) ? String(configs.pageLimitDefault) : '';
       $scope.currentPage = 0;
 
-      $scope.cr8TableData = Object.keys(eval(configs.data)).map(function(key) {
-        return eval(configs.data)[key];
+      var evalData = (configs.isDataFromParentAngular) ? '$scope.$parent.'+configs.data : configs.data;
+
+      if(configs.isAngularAppExist){
+        $scope.$watch(configs.data, function (ctx) {
+          $scope.cr8TableData = Object.keys(eval(evalData)).map(function(key) {
+            return eval(evalData)[key];
+          });
+        }, true);
+      }
+
+      $scope.cr8TableData = Object.keys(eval(evalData)).map(function(key) {
+        return eval(evalData)[key];
       });
       
       $scope.detectNumOfPage = function(){
