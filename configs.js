@@ -1,10 +1,11 @@
-var cr8TableConfig = {
+var tableConfig = {
   headers: ["ID", "Username", "Name", "Phone", "Email", "Active", "Accountant", "Admin", "Date"],
   assocNames:["id", "username", "name", "phone", "email", "isactive", "isaccountant", "isadmin", "date"],
   isAngularAppExist: false,
-  angularAppName: "cr8App", // If there ng-app exist write name, if not give a new name
-  newAngularContollerName: "cr8Control", //pass brand new controller name even if you have controller
+  angularAppName: "cr8App",
+  newAngularContollerName: "cr8Control",
   data: "myData",
+  isDataFromParentAngular:false,
   searchModule: true,
   advancedSearch: true,
   pageLimiter: true,
