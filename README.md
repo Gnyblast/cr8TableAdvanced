@@ -52,7 +52,7 @@ Simple ready to use powerful angularJS plug and play table.
 
     <head>
     	<script src="./cr8table.js></script>
-	<script src='https://rawgit.com/angular/bower-angular/master/angular.min.js'></script>
+		<script src='https://rawgit.com/angular/bower-angular/master/angular.min.js'></script>
     </head>
 
 #### JS File
