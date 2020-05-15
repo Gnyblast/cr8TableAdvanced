@@ -3,9 +3,9 @@ Simple ready to use powerful angularJS plug and play table.
 
 ## Configurations Explained
 ##### headers:
-		the headers of the table.
+		the headers of the table. The number of elements and their order should be same with assocNames config.
 #### assocNames:
-		the key names of your JSON data.
+		the key names of your JSON data. The number of elements and their order should be same with headers config.
 #### isAngularAppExist
 		true of false depending if your web page already using AngularJS.
 #### angularAppName:
