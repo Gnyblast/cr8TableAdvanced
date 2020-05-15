@@ -89,5 +89,5 @@ Simple ready to use powerful angularJS plug and play table.
 	    var table = tableBuilder.run();
 	    document.getElementById('app').appendChild(table);
 	    tableBuilder.angularStart();
-		<script src='https://rawgit.com/angular/bower-angular/master/angular.min.js'></script>
+	    <script src='https://rawgit.com/angular/bower-angular/master/angular.min.js'></script>
     </head>
