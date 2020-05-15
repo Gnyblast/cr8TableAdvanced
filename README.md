@@ -1,3 +1,4 @@
+
 # Cr8Table - Advanced Table Plugin
 Simple ready to use powerful angularJS plug and play table.
 
@@ -32,18 +33,19 @@ Simple ready to use powerful angularJS plug and play table.
 ## Usage
 ### With AngularJS Used WebApp
 
- 1. Download and source the `cr8table.js` file **before** you load angularJS if exist.
+ 1. Download and `cr8table.js`.
  2. Define your `configurations` before calling the `Cr8TableBuilder` Class.
- 3. Initialize the `Cr8TableBuilder` with your `configurations` as parameter.
- 4. Run the `Cr8TableBuilder run()` method to generate your table and store it into a `var`.
- 5. `Append` it where ever you want it in your web page.
- 6. Start the app by using `angularStart()` method.
+ 3. Source the `cr8table.js` as a Module named `Cr8TableBuilder`.
+ 4. Initialize the `Cr8TableBuilder` with your `configurations` as parameter.
+ 5. Run the `Cr8TableBuilder run()` method to generate your table and store it into a `var`.
+ 6. `Append` it where ever you want it in your web page.
+ 7. Start the app by using `angularStart()` method.
 
 ### Without AngularJS Used WebApp
 
  1. Download latest AngularJS library and source it to your page's head tag.
- 2. Download and source the `cr8table.js` file **before** the AngularJS source file.
- 3. Define your `configurations` before calling the `Cr8TableBuilder` Class.
+ 2. Define your `configurations` before calling the `Cr8TableBuilder` Class.
+ 3. Source the `cr8table.js` as a Module named `Cr8TableBuilder`..
  4. Initialize the `Cr8TableBuilder` with your `configurations` as parameter.
  5. Run the `Cr8TableBuilder run()` method to generate your table and store it into a `var`.
  6. `Append` it where ever you want it in your web page.
@@ -53,43 +55,39 @@ Simple ready to use powerful angularJS plug and play table.
 #### Head Tag
 
     <head>
-    	<script src="./cr8table.js></script>
+    	var tableConfig =  {
+		    headers:  ["ID",  "Username",  "Name",  "Phone",  "Email",  "Active",  "Accountant",  "Admin",  "Date"],
+		    assocNames:["id",  "username",  "name",  "phone",  "email",  "isactive",  "isaccountant",  "isadmin",  "date"],
+		    isAngularAppExist:  false,
+		    angularAppName:  "cr8App",
+		    newAngularContollerName:  "cr8Control",
+		    data:  "myData",
+		    searchModule:  true,
+		    advancedSearch:  true,
+		    pageLimiter:  true,
+		    pageLimitOptions:  [2,5,10,20,50,100],
+		    pageLimitDefault:  2,
+		    classes:  {
+			    tableClasses:  "my-table center-table",
+			    theadClasses:  "my-thead center-thead",
+			    theadTrClasses:  "my-thead-tr text-center",
+			    theadThClasses:  "my-th center-text",
+			    theadTdClasses:  "my-td-th same-width",
+			    searchInputClasses:  "padding-class text-bold",
+			    searchComboBoxClasses:  "my-select text-bold",
+			    pageLimitClasses:  "my-select text-bold",
+			    tbodyClasses:  "my-tbody center-tbody",
+			    tbodyTrClasses:  "my-tr center-text",
+			    tbodyTdClasses:  "bold-text center-text",
+			    pageNumbersClasses:  "my-page-numbers",
+			    paginateArrowClasses:  "paginate-class",
+			    activePageNumberClass:"active-page-num"
+		    }
+	    }
+	    
+	    var tableBuilder =  new  Cr8TableBuilder(tableConfig);
+	    var table = tableBuilder.run();
+	    document.getElementById('app').appendChild(table);
+	    tableBuilder.angularStart();
 		<script src='https://rawgit.com/angular/bower-angular/master/angular.min.js'></script>
     </head>
-
-#### JS File
-
-    var tableConfig =  {
-	    headers:  ["ID",  "Username",  "Name",  "Phone",  "Email",  "Active",  "Accountant",  "Admin",  "Date"],
-	    assocNames:["id",  "username",  "name",  "phone",  "email",  "isactive",  "isaccountant",  "isadmin",  "date"],
-	    isAngularAppExist:  false,
-	    angularAppName:  "cr8App",
-	    newAngularContollerName:  "cr8Control",
-	    data:  "myData",
-	    searchModule:  true,
-	    advancedSearch:  true,
-	    pageLimiter:  true,
-	    pageLimitOptions:  [2,5,10,20,50,100],
-	    pageLimitDefault:  2,
-	    classes:  {
-		    tableClasses:  "my-table center-table",
-		    theadClasses:  "my-thead center-thead",
-		    theadTrClasses:  "my-thead-tr text-center",
-		    theadThClasses:  "my-th center-text",
-		    theadTdClasses:  "my-td-th same-width",
-		    searchInputClasses:  "padding-class text-bold",
-		    searchComboBoxClasses:  "my-select text-bold",
-		    pageLimitClasses:  "my-select text-bold",
-		    tbodyClasses:  "my-tbody center-tbody",
-		    tbodyTrClasses:  "my-tr center-text",
-		    tbodyTdClasses:  "bold-text center-text",
-		    pageNumbersClasses:  "my-page-numbers",
-		    paginateArrowClasses:  "paginate-class",
-		    activePageNumberClass:"active-page-num"
-	    }
-    }
-    
-    var tableBuilder =  new  Cr8TableBuilder(tableConfig);
-    var table = tableBuilder.run();
-    document.getElementById('app').appendChild(table);
-    tableBuilder.angularStart();
