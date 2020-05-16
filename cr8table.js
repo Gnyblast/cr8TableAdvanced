@@ -180,20 +180,20 @@ export class Cr8TableBuilder{
 
     var spanFirst = document.createElement('span');
     spanFirst.setAttribute('ng-click',"changePage('first')");
-    spanFirst.setAttribute('ng-if',"numOfPage > 1 && currentPage > 0");
+    spanFirst.setAttribute('ng-if',"numOfPage > 1 && currentPage > 1");
     spanFirst.setAttribute("class", this.config.classes.paginateArrowClasses+" cr8PageSpans");
     spanFirst.textContent = "<<"
     container.appendChild(spanFirst);
 
     var spanPrev = document.createElement('span');
     spanPrev.setAttribute('ng-click',"changePage('previous')");
-    spanPrev.setAttribute('ng-if',"numOfPage > 1 && currentPage > 0");
+    spanPrev.setAttribute('ng-if',"numOfPage >= 1 && currentPage > 0");
     spanPrev.setAttribute("class", this.config.classes.paginateArrowClasses+" cr8PageSpans");
     spanPrev.textContent = "<"
     container.appendChild(spanPrev);
 
     var span = document.createElement('span');
-    span.setAttribute('ng-repeat',"x in [].constructor(numOfPage) track by $index");
+    span.setAttribute('ng-repeat',"x in [].constructor(numOfPage+1) track by $index");
     span.setAttribute('ng-if',"$index+1 >= currentPage-5 && $index < currentPage+9 && $index < (cr8Start+10)");
     span.setAttribute('ng-click',"changePage($index+1)");
     span.setAttribute("data-pagenum","{{$index+1}}");
@@ -204,7 +204,7 @@ export class Cr8TableBuilder{
 
     var spannext = document.createElement('span');
     spannext.setAttribute('ng-click',"changePage('next')");
-    spannext.setAttribute('ng-if',"numOfPage > 1 && currentPage < numOfPage-1");
+    spannext.setAttribute('ng-if',"numOfPage > 0 && currentPage < numOfPage");
     spannext.setAttribute("class", this.config.classes.paginateArrowClasses+" cr8PageSpans");
     spannext.textContent = ">"
     container.appendChild(spannext);
@@ -243,6 +243,7 @@ export class Cr8TableBuilder{
           $scope.cr8TableData = Object.keys(eval(evalData)).map(function(key) {
             return eval(evalData)[key];
           });
+          $scope.detectNumOfPage();
         }, true);
       }
 
@@ -253,7 +254,7 @@ export class Cr8TableBuilder{
       $scope.detectNumOfPage = function(){
         var value = $scope.cr8Limit;
         if( value != undefined && value != ""){
-          $scope.numOfPage = Math.ceil(($scope.cr8TableData.length-1)/parseInt($scope.cr8Limit));
+          $scope.numOfPage = Math.floor(($scope.cr8TableData.length-1)/parseInt($scope.cr8Limit));
         } else {
           $scope.numOfPage = 0;
         }
@@ -309,7 +310,7 @@ export class Cr8TableBuilder{
             $scope.activatePageNum($scope.currentPage+1);
             break;
           case "last":
-            $scope.currentPage = $scope.numOfPage-1;
+            $scope.currentPage = $scope.numOfPage;
             $scope.cr8Start = $scope.currentPage*$scope.cr8Limit;
             $scope.activatePageNum($scope.currentPage+1);
             break;
