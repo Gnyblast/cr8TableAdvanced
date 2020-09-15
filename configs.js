@@ -11,6 +11,9 @@ var tableConfig = {
   pageLimiter: true,
   pageLimitOptions: [2,5,10,20,50,100],
   pageLimitDefault: 2,
+  nameOfActionButton:"İşlem",
+  actionButtonElement:"<span onclick=\"alert('test')\">btn</span>",
+  emptyArrayNotice: "No Data!",
   classes: {
     tableClasses: "my-table center-table",
     theadClasses: "my-thead center-thead",
