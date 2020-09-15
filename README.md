@@ -30,9 +30,18 @@ https://cr8tableadvanced.stackblitz.io/
 		Pass your number of elements shown limit options as an array. 
 #### pageLimitDefault:
 		Default number of elements shown on opening.
+#### isThereActionButtons
+		true or false depending on if you want action buttons in the end of each row.
+#### nameOfActionButton
+		Title of the action button column.
+#### actionButtonElement
+		HTML element of the action button that you want to display. i.e: <span onclick=\"alert('test')\">btn</span>
+#### tableTitle
+		Table title.
+#### emptyArrayNotice
+		the notice that will be shown if the array is empty!
 #### classes:
 		Define your classes for styling the table.
-
 ## Usage
 ### With AngularJS Used WebApp
 
