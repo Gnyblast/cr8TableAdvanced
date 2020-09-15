@@ -12,7 +12,7 @@ var tableConfig = {
   pageLimitOptions: [2,5,10,20,50,100],
   pageLimitDefault: 2,
   isThereActionButtons:true,
-  nameOfActionButton:"İşlem",
+  nameOfActionButton:"Action",
   actionButtonElement:"<span onclick=\"alert('test')\">btn</span>",
   tableTitle: "Products",
   emptyArrayNotice: "No Data!",
