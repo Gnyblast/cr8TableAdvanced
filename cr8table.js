@@ -32,9 +32,20 @@ export class Cr8TableBuilder{
     tableBody.setAttribute("class", this.config.classes.tbodyClasses);
     var tableBodyRow = this.createTr();
     tableBodyRow.setAttribute("class", this.config.classes.tbodyTrClasses);
-    tableBodyRow.setAttribute("ng-repeat","cr8 in cr8TableData | filter: cr8FilterFunc(cr8AdvanceFilter, cr8Filter) | orderBy: cr8Order | limitTo: cr8Limit : cr8Start")
+    tableBodyRow.setAttribute("ng-repeat","cr8 in cr8TableData | filter: cr8FilterFunc(cr8AdvanceFilter, cr8Filter) | orderBy: cr8Order | limitTo: cr8Limit : cr8Start");
+    tableBodyRow.setAttribute('ng-class',"$odd?'"+this.config.classes.tableRowDarkClass+"':'"+this.config.classes.tableRowLightClass+"'");
     tableBodyRow = this.createBodyRows(tableBodyRow);
     tableBody.appendChild(tableBodyRow);
+
+    var emptyArrayNotice = this.createTr();
+    emptyArrayNotice.setAttribute("class", this.config.classes.tbodyTrClasses);
+    emptyArrayNotice.setAttribute("ng-if", "cr8TableData.length <= 0");
+    var noticeTd = document.createElement('td');
+    noticeTd.setAttribute("class", this.config.classes.noticeTdClasses);
+    noticeTd.setAttribute("colspan", (this.config.isThereActionButtons) ? this.config.headers.length+1 : this.config.headers.length);
+    noticeTd.textContent = this.config.emptyArrayNotice;
+    emptyArrayNotice.appendChild(noticeTd);
+    tableBody.appendChild(emptyArrayNotice);
 
     table.appendChild(tableHead);
     table.appendChild(tableBody);
@@ -74,6 +85,13 @@ export class Cr8TableBuilder{
       tableHeadRow.appendChild(th);
     }
 
+    if(this.config.isThereActionButtons){
+      var th = document.createElement('th');
+      th.textContent = this.config.nameOfActionButton;
+      th.setAttribute("class", this.config.classes.theadThClasses);
+      tableHeadRow.appendChild(th);
+    }
+
     return tableHeadRow;
   }
 
@@ -85,12 +103,20 @@ export class Cr8TableBuilder{
       tableBodyRow.appendChild(td);
     }
 
+    if(this.config.isThereActionButtons){
+      var td = document.createElement('td');
+      td.setAttribute("class", this.config.classes.tbodyTdClasses);
+      td.innerHTML = this.config.actionButtonElement;
+      tableBodyRow.appendChild(td);
+    }
+
     return tableBodyRow;
   }
 
   checkSearchModule(table){
     if(this.config.searchModule === true){
       var tableSearchRow = this.createTr();
+      tableSearchRow.setAttribute("class", this.config.classes.theadTrClasses)
       tableSearchRow = this.createSearchModule(tableSearchRow, this.config.advancedSearch);
       table.getElementsByTagName('thead')[0].prepend(tableSearchRow);
     }
@@ -100,6 +126,13 @@ export class Cr8TableBuilder{
 
   createSearchModule(tableSearchRow, isAdvanced){
     var tdCounter = 0;
+
+    var tableTitle = document.createElement('th');
+    tableTitle.setAttribute("class", this.config.classes.theadTdClasses);
+    tableTitle.textContent = this.config.tableTitle;
+    tdCounter++;
+    tableSearchRow.appendChild(tableTitle);
+
     if(isAdvanced){
 
       var td = document.createElement('td');
@@ -141,7 +174,8 @@ export class Cr8TableBuilder{
   }
 
   createRemainingTds(tableSearchRow, counter){
-    while(counter < this.config.headers.length){
+    var headerLenght = (this.config.isThereActionButtons) ? this.config.headers.length+1 : this.config.headers.length;
+    while(counter < headerLenght){
       var td = document.createElement('td');
       td.setAttribute("class", this.config.classes.theadTdClasses)
       tableSearchRow.appendChild(td);
@@ -177,6 +211,7 @@ export class Cr8TableBuilder{
   createPagintaion(table){
     
     var container = document.createElement('div');
+    container.setAttribute("class", this.config.classes.paginationContainerClasses)
 
     var spanFirst = document.createElement('span');
     spanFirst.setAttribute('ng-click',"changePage('first')");
@@ -323,7 +358,8 @@ export class Cr8TableBuilder{
       }
 
       $scope.activatePageNum = function(value){
-        var elems = document.querySelectorAll(".cr8PageSpans");
+        var controller = document.querySelector('[ng-controller="'+configs.newAngularContollerName+'"]');
+        var elems = controller.querySelectorAll(".cr8PageSpans");
 
         [].forEach.call(elems, function(el) {
             el.classList.remove(configs.classes.activePageNumberClass);
@@ -333,7 +369,7 @@ export class Cr8TableBuilder{
         while(checker){
           try{
             $timeout(function(){
-              var element =  document.querySelectorAll("[data-pagenum='"+value+"']");
+              var element =  controller.querySelectorAll("[data-pagenum='"+value+"']");
               element[0].classList.add(configs.classes.activePageNumberClass);
             },500);
             console.log(element)
