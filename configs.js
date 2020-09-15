@@ -11,8 +11,10 @@ var tableConfig = {
   pageLimiter: true,
   pageLimitOptions: [2,5,10,20,50,100],
   pageLimitDefault: 2,
+  isThereActionButtons:true,
   nameOfActionButton:"İşlem",
   actionButtonElement:"<span onclick=\"alert('test')\">btn</span>",
+  tableTitle: "Products",
   emptyArrayNotice: "No Data!",
   classes: {
     tableClasses: "my-table center-table",
@@ -26,8 +28,12 @@ var tableConfig = {
     tbodyClasses: "my-tbody center-tbody",
     tbodyTrClasses: "my-tr center-text",
     tbodyTdClasses: "bold-text center-text",
+    noticeTdClasses: "bold-and-center",
+    paginationContainerClasses: "pagination-container",
     pageNumbersClasses: "my-page-numbers",
     paginateArrowClasses: "paginate-class",
-    activePageNumberClass:"active-page-num"
+    activePageNumberClass:"active-page-num",
+    tableRowDarkClass:"darkertr",
+    tableRowLightClass:'lightertr'
   }
 }
